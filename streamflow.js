@@ -4,9 +4,10 @@ const axios = require('axios');
 
 function streamStats(stationID) {
 
-  axios.get('https://api.weather.gc.ca/collections/hydrometric-annual-statistics/items/08NL024.2019')
+  axios.get(`https://api.weather.gc.ca/collections/hydrometric-annual-statistics/items/?STATION_NUMBER=${stationID}`)
     .then(response => console.log(response.data));
 
 };
 
-streamStats();
+const args = process.argv;
+streamStats(args);
