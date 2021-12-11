@@ -38,12 +38,33 @@ function addStreamStats(category) {
   const streamStats = {}
 
   for (let yearlyData of category.data.features) {
-    const identifier = yearlyData.properties.IDENTIFIER.split(".");
-    const year = identifier[1];
-    streamStats[year] = {};
-    
+    let identifier = yearlyData.properties.IDENTIFIER.split(".");
+    let year = identifier[1];
+
+    //determine what stat category we are looking at
+    let streamflowStatKey;
+    let streamflowStatValue;
+
+    if (yearlyData.properties.DATA_TYPE_EN === 'Water Level') {
+      streamflowStatKey = "maxDailyAvgLevel"; 
+      streamflowStatValue = yearlyData.properties.MAX_VALUE ;
+
+    // } else if (yearlyData.properties.DATA_TYPE_EN === 'Discharge' && !identifier[3]) {
+    //   streamflowStatKey = "maxDailyAvgFlow";
+    //   streamflowStatValue = yearlyData.properties.MAX_VALUE;
+
+    // } else if (yearlyData.properties.DATA_TYPE_EN === 'Discharge' && yearlyData.properties.PEAK_CODE === 'Maximum') { 
+    //   streamflowStatKey = "maxDailyInstFlow";
+    //   streamflowStatValue = yearlyData.properties.PEAK ;
+    //   console.log(streamflowStatValue);
+      
+    } else {
+      continue;
+    }
+    streamStats[year] = {[streamflowStatKey]: streamflowStatValue};
   }
-  console.log(streamStats);
+  
+  console.log(streamStats)
 }
 
 const args = process.argv;
