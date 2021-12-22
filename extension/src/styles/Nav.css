@@ -1,0 +1,18 @@
+.navbar {
+  background-color: #282c34;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+  color: white;
+}
+
+#menu-button {
+  margin-left: 20px
+}
+
+#nav-logo {
+  margin-right: 20px;
+  font-weight: bold
+}
