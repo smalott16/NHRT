@@ -6,3 +6,8 @@
   color: #61dafb;
 }
 
+body {
+  min-width: 500px;
+  min-height: 800px
+}
+
