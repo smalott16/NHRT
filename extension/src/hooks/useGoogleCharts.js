@@ -13,7 +13,7 @@ function useGoogleCharts() {
         script.id = 'googleChartsScript';
         script.onload = () => {
           if (window.google && window.google.charts) {
-            window.google.charts.load('current', {'packages':['chorechart']});
+            window.google.charts.load('current', {'packages':['corechart']});
             window.google.charts.setOnLoadCallback(() => setGoogle(window.google))
           }
         };
@@ -22,15 +22,16 @@ function useGoogleCharts() {
         setGoogle(window.google);
       }
     }
-    return () => {
-      let script = document.getElementById('googleChartScript');
-      if (script) {
-        script.remove();
-      }
-    };
+    
+    // return () => {
+    //   let script = document.getElementById('googleChartScript');
+    //   if (script) {
+    //     script.remove();
+    //   }
+    // };
   }, [google]);
-
-  return google;
+  
+  return { google };
 }
 
 export default useGoogleCharts;
