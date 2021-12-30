@@ -23,12 +23,13 @@ function useGoogleCharts() {
       }
     }
     
-    // return () => {
-    //   let script = document.getElementById('googleChartScript');
-    //   if (script) {
-    //     script.remove();
-    //   }
-    // };
+    //removes the script on unmount
+    return () => {
+      let script = document.getElementById('googleChartScript');
+      if (script) {
+        script.remove();
+      }
+    };
   }, [google]);
   
   return { google };

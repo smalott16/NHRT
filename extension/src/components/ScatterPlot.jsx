@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import useGoogleCharts from "../hooks/useGoogleCharts";
 
-function ScatterPlot() {
+function ScatterPlot(props) {
 
-  const { google } = useGoogleCharts();
+  const { google } = props;
   const [chart, setChart] = useState(null);
   
   useEffect(() => {
@@ -11,23 +10,29 @@ function ScatterPlot() {
     if (google && !chart) {
       // Create the data table.
       const data = new google.visualization.DataTable();
-      data.addColumn('string', 'Topping');
-      data.addColumn('number', 'Slices');
+      data.addColumn('number', 'xValue');
+      data.addColumn('number', 'yValue');
       data.addRows([
-          ['Mushrooms', 3],
-          ['Onions', 1],
-          ['Olives', 1],
-          ['Zucchini', 1],
-          ['Pepperoni', 2]
+          [0, 0],
+          [1, 1],
+          [2, 2],
+          [3, 3],
+          [4, 4],
+          [5, 5]
       ]);
 
       // Set chart options
-      var options = {'title':'How Much Pizza I Ate Last Night',
-                    'width':400,
-                    'height':300};
+      var options = {
+        'title':'x vs y scatter',
+        'width':400,
+        'height':300,
+        'hAxis': {title: 'x axis', minValue: 0, maxValue: 5},
+        'vAxis': {title: 'y axis', minValue: 0, maxValue: 5},
+        'legend': 'none'
+      };
 
       // Instantiate and draw our chart, passing in some options.
-      const newChart = new google.visualization.PieChart(document.getElementById('scatterPlot'));
+      const newChart = new google.visualization.ScatterChart(document.getElementById('scatterPlot'));
       newChart.draw(data, options);
 
       setChart(newChart);
