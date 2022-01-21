@@ -1,19 +1,21 @@
 import '../styles/App.css';
 import '../styles/Nav.css';
 import Nav from './Nav'
-import ScatterPlot from './ScatterPlot';
+//import ScatterPlot from './ScatterPlot';
 import ChartContainer from './ChartContainer';
-import useGoogleCharts from "../hooks/useGoogleCharts";
+import useLocation from "../hooks/useLocation";
+
+//import useGoogleCharts from "../hooks/useGoogleCharts";
 
 function App() {
   
-  const { google } = useGoogleCharts();
+  //const { google } = useGoogleCharts();
+  const { coordinates } = useLocation();
 
   return (
     <div className="App">
       <Nav />
       <section>
-        <ScatterPlot google={google} />
         <ChartContainer />
       </section>
     </div>

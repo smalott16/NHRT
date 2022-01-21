@@ -2,10 +2,10 @@ import useCleverForecast from '../hooks/useCleverForecast';
 
 function ChartContainer() {
 
-  const { forecast } = useCleverForecast();
+  //const { forecast } = useCleverForecast();
 
   return (
-    <div>
+    <div id="hello">
       hello world!
     </div>
   )
