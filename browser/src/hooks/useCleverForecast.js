@@ -5,12 +5,11 @@ import axios from 'axios';
 
 function useCleverForecast() {
 
-  const [forecast, setForecast] = useState([]);
+  const [forecast, setForecast] = useState({});
 
   useEffect(() => {
     fetchForecast('08MD013')
       .then((data) => {
-        console.log(data);
         setForecast(data)
       })
 

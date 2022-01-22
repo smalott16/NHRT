@@ -1,12 +1,14 @@
+import ScatterPlot from './ScatterPlot';
 import useCleverForecast from '../hooks/useCleverForecast';
 
-function ChartContainer() {
+function ChartContainer(props) {
 
-  //const { forecast } = useCleverForecast();
+  const { google } = props;
+  const { forecast } = useCleverForecast();
 
   return (
     <div id="hello">
-      hello world!
+      <ScatterPlot google={google}/>
     </div>
   )
 }

@@ -6,8 +6,7 @@ function useLocation() {
   const [coordinates, setCoordinates] = useState([null, null])
 
   useEffect(() => {
-    console.log("in da location!");
-
+  
     const url = `http://ip-api.com/json/`
 
     axios.get(url)

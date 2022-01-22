@@ -3,8 +3,8 @@ function Nav() {
 
   return (
     <header className='navbar'>
-      <span id='nav-logo'>N.H.R.T</span>
-      <button id='menu-button'><i className="fas fa-bars"></i></button>
+      <div id='nav-logo'>N.H.R.T</div>
+      <div id='menu-button'>Get Started</div>
     </header>
   )
 }
