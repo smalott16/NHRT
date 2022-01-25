@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 function ScatterPlot(props) {
 
-  const { google } = props;
+  const { google, forecast } = props;
   const [chart, setChart] = useState(null);
   
   useEffect(() => {
@@ -10,23 +10,31 @@ function ScatterPlot(props) {
     if (google && !chart) {
       // Create the data table.
       const data = new google.visualization.DataTable();
-      data.addColumn('number', 'xValue');
+      data.addColumn('date', 'xValue');
       data.addColumn('number', 'yValue');
-      data.addRows([
-          [0, 0],
-          [1, 1],
-          [2, 2],
-          [3, 3],
-          [4, 4],
-          [5, 5]
-      ]);
+
+      //NESTED LOOP - REFACTOR 
+      for (let date in forecast) {
+        let dateArray = date.split('-');
+        let year = Number(dateArray[0]);
+        let month = Number(dateArray[1]);
+        let day = Number(dateArray[2]);
+
+        for (let hour in forecast[date]) {
+          let streamflow = Number(forecast[date][hour][0]);
+          let chartDate = new Date(year, month -1, day, hour);
+          data.addRows([
+            [chartDate, streamflow]
+          ])
+        }
+      }
 
       // Set chart options
       var options = {
         'title':'x vs y scatter',
         'width':400,
         'height':300,
-        'hAxis': {title: 'x axis', minValue: 0, maxValue: 5},
+        'hAxis': {format: 'M/d/yy', gridlines: {count: 15}},
         'vAxis': {title: 'y axis', minValue: 0, maxValue: 5},
         'legend': 'none'
       };

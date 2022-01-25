@@ -8,7 +8,7 @@ function ChartContainer(props) {
 
   return (
     <div id="hello">
-      <ScatterPlot google={google}/>
+      <ScatterPlot google={google} forecast={forecast}/>
     </div>
   )
 }
